@@ -1,0 +1,71 @@
+-- 1. Tabel User (untuk autentikasi dan otorisasi)
+CREATE TABLE users (
+    id TEXT PRIMARY KEY,
+    username VARCHAR(100) UNIQUE NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password TEXT NOT NULL,
+    role VARCHAR(50) CHECK (role IN ('admin', 'user', 'guru')) NOT NULL,
+    update_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    delete_at TIMESTAMP
+);
+
+-- 2. Tabel Guru
+CREATE TABLE guru (
+    id TEXT PRIMARY KEY,
+    id_user TEXT NOT NULL,
+    nama VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE,
+    alamat TEXT,
+    update_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    delete_at TIMESTAMP,
+    CONSTRAINT fk_guru_user FOREIGN KEY (id_user) REFERENCES users(id) ON DELETE CASCADE
+);
+
+-- 3. Tabel Kelas
+CREATE TABLE kelas (
+    id TEXT PRIMARY KEY,
+    kelas VARCHAR(50) NOT NULL,
+    id_guru TEXT,
+    update_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    delete_at TIMESTAMP,
+    CONSTRAINT fk_kelas_guru FOREIGN KEY (id_guru) REFERENCES guru(id) ON DELETE SET NULL
+);
+
+-- 4. Tabel Siswa
+CREATE TABLE siswa (
+    id TEXT PRIMARY KEY,
+    nama VARCHAR(100) NOT NULL,
+    kelas_id TEXT NOT NULL,
+    email VARCHAR(100) UNIQUE,
+    alamat TEXT,
+    update_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    delete_at TIMESTAMP,
+    CONSTRAINT fk_siswa_kelas FOREIGN KEY (kelas_id) REFERENCES kelas(id) ON DELETE SET NULL
+);
+
+-- 5. Tabel Mata Pelajaran
+CREATE TABLE mata_pelajaran (
+    id TEXT PRIMARY KEY,
+    nama_pelajaran VARCHAR(100) NOT NULL,
+    id_guru TEXT,
+    kelas_id TEXT,
+    deskripsi TEXT,
+    update_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    delete_at TIMESTAMP,
+    CONSTRAINT fk_mapel_guru FOREIGN KEY (id_guru) REFERENCES guru(id) ON DELETE SET NULL,
+    CONSTRAINT fk_mapel_kelas FOREIGN KEY (kelas_id) REFERENCES kelas(id) ON DELETE SET NULL
+);
+
+-- 6. Transaction Logs (Audit Log)
+--    Untuk mencatat proses berhasil maupun gagal
+create table transaction_logs ( 
+id SERIAL primary key,
+timestamp TIMESTAMP not null,
+user_id VARCHAR(255) not null,
+perangkat VARCHAR(255) not null,
+service_name VARCHAR(255) not null,
+request_body JSONB,
+response_body JSONB,
+request_param JSONB,
+result TEXT,
+header JSONB );
