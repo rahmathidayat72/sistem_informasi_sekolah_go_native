@@ -11,7 +11,8 @@ import (
 func main() {
 	// Log informasi bahwa aplikasi telah dimulai
 	log.Println("[INFO] 🚀 Aplikasi dimulai...")
-
+// Load environment variables
+	config.LoadEnv()
 	// Inisialisasi koneksi database PostgreSQL
 	db, err := config.InitPostgreSQLPool()
 	if err != nil {
@@ -29,7 +30,6 @@ func main() {
 
 	// Tentukan port untuk menjalankan server HTTP
 	port := os.Getenv("PORT")
-	
 	// Log informasi bahwa server HTTP berjalan
 	log.Printf("[INFO] 🌐 Server berjalan di http://localhost:%s", port)
 

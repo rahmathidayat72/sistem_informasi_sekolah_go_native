@@ -8,7 +8,6 @@ import (
 	"time"
 
 	"github.com/jackc/pgx/v5/pgxpool"
-	"github.com/joho/godotenv"
 )
 
 var DBPool *pgxpool.Pool
@@ -19,11 +18,14 @@ var DBPool *pgxpool.Pool
 // Fungsi ini juga akan mengisi variabel DBPool dengan pointer ke objek pgxpool.Pool yang diinisialisasi.
 // DBPool dapat digunakan untuk mengakses database tanpa harus membuat objek pgxpool.Pool lagi.
 func InitPostgreSQLPool() (*pgxpool.Pool, error) {
-	// Memuat file .env
-	err := godotenv.Load(".env")
-	if err != nil {
-		log.Fatalf("Gagal memuat file .env: %v", err)
-	}
+	// // Memuat file .env
+	// err := godotenv.Load(".env")
+	// if err != nil {
+	// 	log.Fatalf("Gagal memuat file .env: %v", err)
+	// }
+	
+	// Load env sesuai APP_ENV (.env.development / .env.production / .env.testing)
+	LoadEnv()
 
 	// Mengambil environment variable
 	host := os.Getenv("DBHOST")
