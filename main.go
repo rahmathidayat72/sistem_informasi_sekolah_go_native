@@ -5,6 +5,7 @@ import (
 	"go_rest_native_sekolah/router"
 	"log"
 	"net/http"
+	"os"
 )
 
 func main() {
@@ -27,12 +28,13 @@ func main() {
 	header := router.InitRouter(db)
 
 	// Tentukan port untuk menjalankan server HTTP
-	const port = ":8081"
+	port := os.Getenv("PORT")
+	
 	// Log informasi bahwa server HTTP berjalan
-	log.Printf("[INFO] 🌐 Server berjalan di http://localhost%s", port)
+	log.Printf("[INFO] 🌐 Server berjalan di http://localhost:%s", port)
 
 	// Jalankan server HTTP dan tangani error jika terjadi
-	if err := http.ListenAndServe(port, header); err != nil {
+	if err := http.ListenAndServe(":"+port, header); err != nil {
 		// Jika terjadi error saat menjalankan server, log fatal dan hentikan aplikasi
 		log.Fatalf("[FATAL] ❌ Gagal menjalankan server: %v", err)
 	}
