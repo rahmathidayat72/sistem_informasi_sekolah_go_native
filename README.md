@@ -87,53 +87,64 @@ Aplikasi sistem informasi sekolah untuk mengelola:
 
 - POST /login → login & dapatkan JWT
 
+### 👤 User
+- GET /user → Ambil semua user
+
+- GET /users/userbyid?{id} → Ambil detail user
+
+- POST /user/tambah → Tambah user
+
+- PUT /user/update?{id} → Update user
+
+- DELETE /users/deleted?{id} → Hapus user
+
 ### 👨‍🏫 Guru
 
 - GET /guru → list semua guru
 
-- POST /guru → tambah guru
+- POST /guru/tambah → tambah guru
 
-- GET /guru/{id} → detail guru
+- GET /guru/gurubyid?{id} → detail guru
 
-- PUT /guru/{id} → update guru
+- PUT /guru/update?{id} → update guru
 
-- DELETE /guru/{id} → hapus guru
+- DELETE /guru/deleted?{id} → hapus guru
 
 ### 👨‍🎓 Siswa
 
 - GET /siswa → list semua siswa
 
-- POST /siswa → tambah siswa
+- POST /siswa/tambah → tambah siswa
 
-- GET /siswa/{id} → detail siswa
+- GET /siswa/siswabyid?{id} → detail siswa
 
-- PUT /siswa/{id} → update siswa
+- PUT /siswa/update?{id} → update siswa
 
-- DELETE /siswa/{id} → hapus siswa
+- DELETE /siswa/deleted?{id} → hapus siswa
 
 ### 🏫 Kelas
 
 - GET /kelas → list semua kelas
 
-- POST /kelas → tambah kelas
+- POST /kelas/tambah → tambah kelas
 
-- GET /kelas/{id} → detail kelas
+- GET /kelas/kelasbyid?{id} → detail kelas
 
-- PUT /kelas/{id} → update kelas
+- PUT /kelas/update?{id} → update kelas
 
-- DELETE /kelas/{id} → hapus kelas
+- DELETE /kelas/deleted?{id} → hapus kelas
 
 ### 📖 Mata Pelajaran
 
 - GET /mapel → list semua mapel
 
-- POST /mapel → tambah mapel
+- POST /mapel/tambah → tambah mapel
 
-- GET /mapel/{id} → detail mapel
+- GET /mapel/update?{id} → detail mapel
 
-- PUT /mapel/{id} → update mapel
+- PUT /mapel/update?{id} → update mapel
 
-- DELETE /mapel/{id} → hapus mapel
+- DELETE /mapel/deleted?{id} → hapus mapel
 
 ---
 
