@@ -59,7 +59,7 @@ Aplikasi sistem informasi sekolah untuk mengelola:
 
    ```
    APP_NAME="Sistem Informasi Sekolah"
-   APP_PORT=8081
+   APP_PORT=1234 (hanya contoh)
 
    DB_HOST=localhost
    DB_PORT=5432
