@@ -76,7 +76,7 @@ Aplikasi sistem informasi sekolah untuk mengelola:
    ```
 5. Server akan berjalan sesuai port pada .env, misalnya:
    ```
-   🌐 Server berjalan di http://localhost:8081
+   🌐 Server berjalan di http://localhost:8080
    ```
 
 ---
