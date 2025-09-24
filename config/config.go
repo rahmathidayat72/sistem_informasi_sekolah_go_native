@@ -15,7 +15,7 @@ func LoadEnv() {
 		env = "development" // default kalau tidak di-set
 	}
 
-	envFile := "dev.env" // Ganti bagian ini ketika ada file env lain atau diubah ke production.env
+	envFile := ".dev.env" // Ganti bagian ini ketika ada file env lain atau diubah ke production.env
 
 	// Coba load file sesuai APP_ENV
 	if err := godotenv.Load(envFile); err != nil {
