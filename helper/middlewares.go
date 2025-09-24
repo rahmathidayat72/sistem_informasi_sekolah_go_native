@@ -2,6 +2,7 @@ package helper
 
 import (
 	"encoding/json"
+	"go_rest_native_sekolah/config"
 	"log"
 	"net/http"
 	"os"
@@ -108,6 +109,8 @@ func VerifyTokenHeader(requestToken string) (MetaToken, error) {
 }
 
 func VerifyToken(accessToken string) (*jwt.Token, error) {
+	config.LoadEnv() // Pastikan environment variable sudah di-load
+	// Ambil secret key dari environment variable
 	jwtSecretKey := os.Getenv("JWT_SECRET")
 
 	token, err := jwt.Parse(accessToken, func(token *jwt.Token) (interface{}, error) {
