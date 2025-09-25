@@ -154,7 +154,7 @@ func usersRouter(mux *http.ServeMux, db *pgxpool.Pool) {
 	usersService := serviceuser.NewServiceUser(usersRepo, db)
 	usersController := userscontroller.NewUsesController(usersService)
 
-	mux.HandleFunc("/user", helper.AuthMiddleware(func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/users", helper.AuthMiddleware(func(w http.ResponseWriter, r *http.Request) {
 		if r.Method == http.MethodGet {
 			err := usersController.Users(w, r)
 			if err != nil {
@@ -165,7 +165,7 @@ func usersRouter(mux *http.ServeMux, db *pgxpool.Pool) {
 		}
 	}))
 
-	mux.HandleFunc("/user/tambah", func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/users/tambah", func(w http.ResponseWriter, r *http.Request) {
 		if r.Method == http.MethodPost {
 			err := usersController.InsertUser(w, r)
 			if err != nil {
@@ -176,7 +176,7 @@ func usersRouter(mux *http.ServeMux, db *pgxpool.Pool) {
 		}
 	})
 
-	mux.HandleFunc("/user/userbyid", helper.AuthMiddleware(func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/users/userbyid", helper.AuthMiddleware(func(w http.ResponseWriter, r *http.Request) {
 		if r.Method == http.MethodGet || r.Method == http.MethodPut {
 			// Langsung jalankan fungsi GuruById milik controller
 			err := usersController.GetUserById(w, r)
@@ -189,7 +189,7 @@ func usersRouter(mux *http.ServeMux, db *pgxpool.Pool) {
 		}
 	}))
 
-	mux.HandleFunc("/user/update", helper.AuthMiddleware(func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/users/update", helper.AuthMiddleware(func(w http.ResponseWriter, r *http.Request) {
 		if r.Method == http.MethodPost || r.Method == http.MethodPut {
 			// Langsung jalankan fungsi UpdateGuru milik controller
 			err := usersController.UpdateUser(w, r)
@@ -202,7 +202,7 @@ func usersRouter(mux *http.ServeMux, db *pgxpool.Pool) {
 		}
 	}))
 
-	mux.HandleFunc("/user/deleted", helper.AuthMiddleware(func(w http.ResponseWriter, r *http.Request) {
+	mux.HandleFunc("/users/deleted", helper.AuthMiddleware(func(w http.ResponseWriter, r *http.Request) {
 		if r.Method == http.MethodDelete || r.Method == http.MethodPut {
 			// Langsung jalankan fungsi DeletedById milik controller
 			err := usersController.DeleteUser(w, r)

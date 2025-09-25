@@ -26,7 +26,7 @@ func LoadEnv() {
 	// File .env yang akan dimuat sesuai dengan APP_ENV
 	envFile := fmt.Sprintf(".%s.env", env)
 	if env == "development" {
-		envFile = ".dev.env"
+		envFile = ".dev.env" // Bisa di set sesuai kebutuhan dan file env yang digunakan
 	}
 
 	// Coba load file sesuai APP_ENV

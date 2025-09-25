@@ -4,6 +4,7 @@
 
 Aplikasi sistem informasi sekolah untuk mengelola:
 
+- Data **User**
 - Data **Siswa**
 - Data **Guru**
 - Data **Kelas**
@@ -11,7 +12,7 @@ Aplikasi sistem informasi sekolah untuk mengelola:
 
 ### Fitur utama
 
-- CRUD (Create, Read, Update, Delete) siswa, guru, kelas, mapel
+- CRUD (Create, Read, Update, Delete) siswa, guru, kelas, mapel dan user
 - Autentikasi **JWT**
 - Logging transaksi request/response
 
@@ -88,13 +89,14 @@ Aplikasi sistem informasi sekolah untuk mengelola:
 - POST /login → login & dapatkan JWT
 
 ### 👤 User
-- GET /user → Ambil semua user
+
+- GET /users → Ambil semua user
 
 - GET /users/userbyid?{id} → Ambil detail user
 
-- POST /user/tambah → Tambah user
+- POST /users/tambah → Tambah user
 
-- PUT /user/update?{id} → Update user
+- PUT /users/update?{id} → Update user
 
 - DELETE /users/deleted?{id} → Hapus user
 
