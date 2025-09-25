@@ -20,8 +20,8 @@ Aplikasi sistem informasi sekolah untuk mengelola:
 
 ## ⚙️ Tech Stack
 
-- **Bahasa**: Go (Native, tanpa framework HTTP tambahan)
-- **Database**: PostgreSQL
+- **Bahasa**: ![Go](https://img.shields.io/badge/Go-00ADD8?logo=go&logoColor=white&style=for-the-badge) (Native, tanpa framework HTTP tambahan)
+- **Database**: ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-336791?logo=postgresql&logoColor=white&style=for-the-badge)
 - **Library**:
   - [`github.com/jackc/pgx/v5 v5.7.5`](https://pkg.go.dev/github.com/jackc/pgx/v5) → driver PostgreSQL
   - [`github.com/joho/godotenv v1.5.1`](https://pkg.go.dev/github.com/joho/godotenv) → load file `.env`
