@@ -25,7 +25,7 @@ Aplikasi sistem informasi sekolah untuk mengelola:
 - **Library**:
   - [`github.com/jackc/pgx/v5 v5.7.5`](https://pkg.go.dev/github.com/jackc/pgx/v5) → driver PostgreSQL
   - [`github.com/joho/godotenv v1.5.1`](https://pkg.go.dev/github.com/joho/godotenv) → load file `.env`
-  - [`github.com/stretchr/testify v1.10.0`](https://pkg.go.dev/github.com/stretchr/testify) → testing
+  <!-- - [`github.com/stretchr/testify v1.10.0`](https://pkg.go.dev/github.com/stretchr/testify) → testing -->
 
 ---
 
@@ -162,4 +162,4 @@ Aplikasi sistem informasi sekolah untuk mengelola:
 
 ## 👨‍💻 Kontributor
 
-- Rahmat Hidayat – Developer utama
+- **Rahmat Hidayat** – Developer utama
