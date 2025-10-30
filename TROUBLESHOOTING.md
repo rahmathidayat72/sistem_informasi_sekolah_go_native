@@ -191,7 +191,10 @@ git remote add origin https://github.com/rahmathidayat72/sistem_informasi_sekola
 **Solusi:**
 ```bash
 git pull origin main --rebase
-# Selesaikan konflik jika ada
+# Jika ada konflik, selesaikan secara manual:
+# 1. Edit file yang konflik
+# 2. git add .
+# 3. git rebase --continue
 git push origin main
 ```
 
@@ -217,6 +220,6 @@ Jika masih mengalami masalah:
 
 ## 📚 Referensi
 
-- [GitHub Docs - Managing your personal access tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)
+- [GitHub Docs - Creating a personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
 - [GitHub Docs - Connecting to GitHub with SSH](https://docs.github.com/en/authentication/connecting-to-github-with-ssh)
-- [Git Documentation - Remote](https://git-scm.com/docs/git-remote)
+- [Git Documentation - git remote](https://git-scm.com/docs/git-remote)
