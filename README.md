@@ -160,6 +160,19 @@ Aplikasi sistem informasi sekolah untuk mengelola:
 
 ---
 
+## 🔧 Troubleshooting
+
+Mengalami masalah saat git push atau clone? Lihat panduan lengkap di [TROUBLESHOOTING.md](./TROUBLESHOOTING.md)
+
+**Masalah umum:**
+- ❌ Permission denied (publickey) saat push
+- ❌ Authentication failed
+- ❌ Remote origin already exists
+
+**Solusi cepat:** Gunakan HTTPS dengan Personal Access Token. Detail lengkap ada di [TROUBLESHOOTING.md](./TROUBLESHOOTING.md)
+
+---
+
 ## 👨‍💻 Kontributor
 
 - **Rahmat Hidayat** – Developer utama
