@@ -140,6 +140,7 @@ func (uc *UserController) InsertUser(w http.ResponseWriter, r *http.Request) err
 	response := helper.APIResponse(http.StatusCreated, "User created", formattedUser)
 
 	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusCreated)
 	err = json.NewEncoder(w).Encode(response)
 	if err != nil {
 		// Jika terjadi error dalam mengencode JSON, maka kita akan mengembalikan error.
