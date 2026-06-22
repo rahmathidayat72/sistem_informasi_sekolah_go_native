@@ -11,6 +11,8 @@ import (
 	"github.com/jackc/pgx/v5/pgxpool"
 )
 
+var errGuruNotFound = errors.New("guru service: Data tidak ditemukan")
+
 // guruService  merepresentasikan service untuk tabel guru
 type guruService struct {
 	guruData guru.DataGuruInterface // guruData  berisi kumpulan function-pointers yang dibutuhkan untuk mengakses data guru
@@ -115,9 +117,8 @@ func (s *guruService) UpdateGuru(insert *guru.GuruCore, id string) error {
 	// Ambil data lama dari database berdasarkan ID
 	existingData, err := s.guruData.SelectById(id)
 	if err != nil {
-		if err == pgx.ErrNoRows {
-			// Jika data tidak ditemukan, kembalikan error
-			return errors.New("guru service: Data tidak ditemukan")
+		if errors.Is(err, pgx.ErrNoRows) {
+			return errGuruNotFound
 		}
 		return fmt.Errorf("Id salah atau gagal mengambil data lama: %w", err)
 	}
@@ -149,8 +150,10 @@ func (s *guruService) UpdateGuru(insert *guru.GuruCore, id string) error {
 func (s *guruService) SelectById(id string) (*guru.GuruCore, error) {
 	// Panggil method SelectById dari data layer untuk mengambil data guru berdasarkan ID.
 	guru, err := s.guruData.SelectById(id)
-	// Jika terjadi error saat mengambil data, kembalikan nil dan error yang terbungkus dengan pesan.
 	if err != nil {
+		if errors.Is(err, pgx.ErrNoRows) {
+			return nil, errGuruNotFound
+		}
 		return nil, fmt.Errorf("gagal mengambil data guru: %w", err)
 	}
 	// Kembalikan objek guru yang berhasil diambil dan error nil.

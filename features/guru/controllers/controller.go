@@ -108,10 +108,11 @@ func (gc *Gurucontroller) InsertGuru(w http.ResponseWriter, r *http.Request) err
 
 	// Format response.
 	formattedGurus := FormatGuruList([]guru.GuruCore{guruCore})
-	response := helper.APIResponse(http.StatusOK, "Berhasil menginsert data guru ke database", formattedGurus)
+	response := helper.APIResponse(http.StatusCreated, "Berhasil menginsert data guru ke database", formattedGurus)
 
 	// Tulis response.
 	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusCreated)
 	err = json.NewEncoder(w).Encode(response)
 	if err != nil {
 		return fmt.Errorf("error encoding response: %v", err)
@@ -198,10 +199,13 @@ func (gc *Gurucontroller) GetGuruById(w http.ResponseWriter, r *http.Request) er
 		return fmt.Errorf("guru controller: ID guru tidak ditemukan dalam query parameter")
 	}
 
-	// Panggil service untuk mengambil data guru berdasarkan ID
 	guruData, err := gc.guruService.SelectById(id)
 	if err != nil {
-		// Jika terjadi error saat mengambil data guru, kembalikan error dengan pesan yang sesuai.
+		if strings.Contains(err.Error(), "tidak ditemukan") {
+			http.Error(w, "Data guru tidak ditemukan", http.StatusNotFound)
+			return nil
+		}
+		http.Error(w, "Terjadi kesalahan saat mengambil data guru", http.StatusInternalServerError)
 		return fmt.Errorf("guru controller: gagal mengambil data guru berdasarkan ID: %v", err)
 	}
 
@@ -228,6 +232,7 @@ func (gc *Gurucontroller) DeleteGuru(w http.ResponseWriter, r *http.Request) err
 	// Jika ID tidak ditemukan, kembalikan error dengan status 400.
 	id := r.URL.Query().Get("id")
 	if id == "" {
+		http.Error(w, "ID guru tidak ditemukan dalam query parameter", http.StatusBadRequest)
 		return fmt.Errorf("guru controller: ID guru tidak ditemukan dalam query parameter")
 	}
 

@@ -37,8 +37,8 @@ func NewServiceKelas(repo kelas.DataKelasInterface) kelas.ServiceKelasInterface 
 func (k *kelasService) Insert(insert *kelas.KelasCore) error {
 	// Memeriksa apakah koneksi ke repository ada atau tidak
 	if k.kelasData == nil {
-		// Jika koneksi repository nil maka akan terjadi panic
-		panic("Nil repository")
+		// Jika koneksi repository nil maka akan return error
+		return errors.New("kelas service: Nil repository")
 	}
 
 	// Memeriksa apakah parameter insert nil

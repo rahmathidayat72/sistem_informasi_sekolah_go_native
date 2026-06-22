@@ -9,6 +9,7 @@ import (
 	"log"
 
 	"github.com/google/uuid"
+	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgxpool"
 )
 
@@ -205,7 +206,9 @@ func (r *guruQuery) SelectById(id string) (*guru.GuruCore, error) {
 	// Fungsi Scan akan mengembalikan error jika terjadi kesalahan
 	err := row.Scan(&result.ID, &result.ID_User, &result.Nama, &result.Email, &result.Alamat)
 	if err != nil {
-		// Jika terjadi error maka kembalikan error
+		if errors.Is(err, pgx.ErrNoRows) {
+			return nil, pgx.ErrNoRows
+		}
 		return nil, fmt.Errorf("gagal mengambil data guru: %w", err)
 	}
 
